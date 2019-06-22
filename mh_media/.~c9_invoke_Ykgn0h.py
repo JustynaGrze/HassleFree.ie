@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from users import views as user_views
 from products import views as product_views
 from cart import urls as urls_cart
-from search import urls as urls_search
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -54,7 +54,6 @@ urlpatterns = [
     # path('', include('products.urls')),
     path('products/', product_views.all_products, name='products'),
     url(r'^cart/', include(urls_cart)),
-    url(r'^search/', include(urls_search)),
     
 ]
 

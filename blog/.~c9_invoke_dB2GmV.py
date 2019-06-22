@@ -9,7 +9,6 @@ from django.views.generic import (
     DeleteView
 )
 from .models import Post
-from products.models import Location, Category
 
 
 def home(request):
@@ -25,15 +24,13 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
     paginate_by = 10
-    
-    def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data(**kwargs)
-        context['location'] = Location.objects.all()
-        context['category'] = Category.objects.all()
-        
+     def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['roles'] = Role.objects.all()
+        context['venue_list'] = Venue.objects.all()
+        context['festival_list'] = Festival.objects.all()
         # And so on for more models
         return context
-        
     
 class PostListViewSearch(ListView):
     model = Post
