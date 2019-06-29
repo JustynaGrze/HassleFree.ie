@@ -13,9 +13,6 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
-def stripe(request):
-    return render(request, 'checkout/stripe.html')
-    
 
 @login_required()
 def checkout(request):
@@ -35,6 +32,7 @@ def checkout(request):
  
             order = order_form.save(commit=False)
             order.date = timezone.now()
+            order.user = request.user
             order.save()
             
             cart = request.session.get('cart', {})
@@ -48,6 +46,10 @@ def checkout(request):
                     quantity = quantity
                     )
                 order_line_item.save()
+                
+            order.total = total
+            
+            order.save()
                 
             try:
                 charge = stripe.Charge.create(
@@ -65,9 +67,8 @@ def checkout(request):
                 for id, quantity in cart.items():
                     product = get_object_or_404(Product, pk=id)
                     
-                    if product.quantity != -1:
-                        product.quantity -= quantity
-                        product.save()
+                    product.quantity -= quantity
+                    product.save()
                 
                 request.session['cart'] = {}
 

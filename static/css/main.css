@@ -42,6 +42,7 @@ ul {
   -webkit-transition: .5s all ease;
   -moz-transition: .5s all ease;
   transition: .5s all ease;
+  
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -84,7 +85,7 @@ ul {
   border-width: 5px 0 5px 5px;
   border-left-color: #ccc;
   margin-top: 5px;
-  margin-right: -10px;
+  margin-right: 5px;
 }
 
 .dropdown-submenu:hover>a:after {
@@ -97,7 +98,7 @@ ul {
 
 .dropdown-submenu.pull-left>.dropdown-menu {
   left: -100%;
-  margin-left: 10px;
+  margin-left: 5px;
   -webkit-border-radius: 6px 0 6px 6px;
   -moz-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px;
@@ -107,6 +108,7 @@ ul {
   color: #fff;
   background-color: transparent;
   border-color: white;
+  margin-right: 0 !important;
 }
 
 .btn-secondary :hover>a:after {
@@ -120,6 +122,7 @@ ul {
   background-color: #ffffff;
   border-color: white;
 }
+
 
 .btn-secondary:hover {
   color: #F4A460;
@@ -190,7 +193,10 @@ ul {
   left: 0.5rem;
   right: 0.5rem;
 }
-
+.quantity{
+  position:relative;
+  margin-left:-10px;
+}
 .nothing-found {
   height: 400px; 
   width: 100%;
@@ -383,7 +389,6 @@ section .section-title {
 #payment_form {
   margin-left:12px;
   margin-right:10px;
-  
 }
 
 /*............................................................... media*/
@@ -404,7 +409,37 @@ section .section-title {
     padding-bottom: 0px;
     margin-bottom: 10px;
   }
-
+  .quantity {
+    position:relative;
+    margin-left:-10px;
+  }
 }
 
 
+/*............................................................... profile */
+
+.menu-item {
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.menu-detail {
+  display: none;
+}
+
+.transaction {
+  cursor: zoom-in;
+}
+
+.transaction:hover {
+  background-color: #EAEAEA;
+}
+
+.transaction-detail {
+  display: none;
+}
+
+.zoomout {
+  cursor: zoom-out;
+}

@@ -1,24 +1,92 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load humanize %} {% block content %}
+<div class="content-section">
+
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+
+  <!------------------------------ Personal info ------------------------------>
+
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-light menu-item"><strong>Profile Info</strong></button>
+      <div class="menu-detail">
+        <div class="content-section col-md-6 col-sm-12">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              <legend class="border-bottom mb-4"><strong>Profile Info</strong></legend>
+              {{ u_form|crispy }} {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+          </form>
         </div>
       </div>
-       <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
-              {{ u_form|crispy }}
-              {{ p_form|crispy }}
-          </fieldset>
-          <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
-          </div>
-      </form>
     </div>
-{% endblock content %}
+  </div>
+
+  <!------------------------------ My items ------------------------------>
+
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-light menu-item"><strong>My Listings</strong></button>
+      <div class="menu-detail">
+        
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------ My transactions ------------------------------>
+
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-light menu-item"><strong>My Transactions</strong></button>
+      <div class="menu-detail">
+        
+        <div class="row">
+          {% if transactions %}
+          {% for transaction in transactions %}
+          <div class="col-12 transaction">
+            {{ transaction.date}} &euro;{{ transaction.total | floatformat:2 | intcomma }}
+            <div class="transaction-detail">
+              {% for item in transaction.item.all %}
+              <div class="row">
+              {{ item.product.name }}
+              </div>
+              {% endfor %}
+              </div>
+          </div>
+        
+        {% endfor %}
+        {% else %}
+        You have no transaction history. Yet!
+        {% endif %}
+      </div>
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content %} {% block js %}
+<script>
+  $(function() {
+    
+    $(".menu-item").click(function() {
+      $(this).siblings(".menu-detail").toggle(1000);
+    });
+    
+    $(".transaction").click(function() {
+      $(this).children(".transaction-detail").toggle(1000);
+      $(this).toggleClass("zoomout")
+    });
+    
+  });
+</script>
+{% endblock %}

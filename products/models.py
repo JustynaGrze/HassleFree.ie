@@ -1,7 +1,9 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+
 
 # Create your models here.
 class Category(models.Model):
@@ -26,9 +28,9 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=0)
     name = models.CharField(max_length=50, default='')
     description = models.TextField()
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(99)])
     location = models.ForeignKey(Location, on_delete=models.CASCADE, default=0)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
     image = models.ImageField(upload_to='images', null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
 

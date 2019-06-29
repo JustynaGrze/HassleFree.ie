@@ -4,7 +4,7 @@
       <div class="img-background" style="background: url('{% if product.image %}{{ product.image.url }}{% else %}{{ product.category.default_image.url }}{% endif %}')no-repeat center center;"></div>
         <div class="card-body">
             <p class="card-title"><a href="{% url 'product-detail' product.id %}">{{product.name}}</a></p>
-            <p class="card-text">{{ product.description | truncatechars:90 }}</p>
+           
             <div class="row">
                 <div class="col-12">
                     Price: &euro;{{ product.price | floatformat:2 | intcomma }}

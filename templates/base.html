@@ -15,8 +15,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Bitter&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
         {% if title %}
@@ -32,19 +32,16 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4 nav-title" href="{% url 'home' %}">HassleFree.ie</a>
+                <a class="navbar-brand nav-title" href="{% url 'home' %}">HassleFree.ie</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{% url 'home' %}">Ads</a>
-                    </div>
                     
                     <!--------------- Filters Start -------------->
 
-                    <div class="site-header navbar-nav nav-link">
-                        <div class="container">
+                    <div class="site-header navbar-nav nav-link" style="padding: 0px">
+                        <div class="container"  style="padding-right: 0px; padding-left: 20px">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Filter
@@ -75,7 +72,7 @@
                                     <li class="dropdown-divider"></li>
                                     <li>
                                         <div class="search-bar">
-                                                <input name="q" id="form-size" class="form-control mr-sm-2 " type="search" placeholder="Search phrase in description" aria-label="Search" {% if q %}value="{{ q }}"{% endif %}>
+                                                <input name="q" id="form-size" class="form-control mr-sm-2" type="search" style="width: auto" placeholder="Search" aria-label="Search" {% if q %}value="{{ q }}"{% endif %}>
                                                 <button class="btn btn-outline-success my-2 my-sm-0 search_button" type="submit">Search</button>
                                         </div>
                                     </li>
@@ -88,8 +85,8 @@
                     <!--------------- Filters End -------------->
                     <!--------------- Order By Start -------------->
                     
-                    <div class="navbar-nav mr-auto">
-                        <div class="container">
+                    <div class="navbar-nav mr-auto" style="padding: 0px">
+                        <div class="container" style="padding-right: 0px; padding-left: 20px">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Order By
@@ -112,10 +109,6 @@
                                             <li class="dropdown-item"><a href ="{% relative_url 'price' 'sort' params %}">Start with lowest</a></li>
                                             <li class="dropdown-item"><a href ="{% relative_url '-price' 'sort' params %}">Start with highest</a></li>
                                         </ul>
-                                    </li>
-                                    <li class="dropdown-divider"></li>
-                                    <li>
-                                        <button class="btn btn-outline-success my-2 my-sm-0 search_button" type="submit">Filter</button>
                                     </li>
                                 </ul>
                                 {% endwith %}
@@ -165,11 +158,11 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                 <ul class="list-unstyled list-inline social text-center">
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                    <li class="list-inline-item"><a href="."><i class="fa fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="."><i class="fa fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="."><i class="fa fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="."><i class="fa fa-google-plus"></i></a></li>
+                    <li class="list-inline-item"><a href="." target="_blank"><i class="fa fa-envelope"></i></a></li>
                 </ul>
             </div>
             </hr>

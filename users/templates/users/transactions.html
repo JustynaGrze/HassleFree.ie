@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block content %}
+    <div class="content-section">
+      
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      
+      <hr>
+      Your history of transactions:
+      
+      <div class="row">
+        {% if transactions %}
+        {% for transaction in transactions %}
+        <div class="col-12 transaction">
+          {{ transaction.date}} &euro;{{ transaction.total | floatformat:2 | intcomma }}
+          <div class="transaction-detail">
+            {% for item in transaction.item.all %}
+            <div class="row">
+            {{ item.product.name }}
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        
+        {% endfor %}
+        {% else %}
+        You have no transaction history. Yet!
+        {% endif %}
+      </div>
+      
+    </div>
+{% endblock content %}
+
+{% block js %}
+<script>
+    $(function() {
+        $(".transaction").click(function() {
+            $(this).children(".transaction-detail").toggle(1000);
+            $(this).toggleClass("zoomout")
+        });
+    }); 
+</script>
+{% endblock %}

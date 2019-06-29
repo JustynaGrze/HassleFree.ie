@@ -23,27 +23,30 @@
     </div>
 </div>
 -->
-
-<div class="row">
-    <div class="media">
-        <img class="img-background" style="background: url('{% if object.image %}{{ object.image.url }}{% else %}{{ object.category.default_image.url }}{% endif %}') no-repeat center center;">
-        <div class="media-body">
-            <h5 class="card-title">{{object.name}}</h5>
-            <p class="card-text">{{ object.description | truncatechars:90 }}</p>
-            
-        </div>
-        <div class="card-add-to-basket">
-            <form method="post" action="{% url 'add_to_cart' product.id %}">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
-                    <span class="input-group-btn">
-                          <button class="btn btn-success" type="submit">Add</button>
-                      </span>
-                </div>
-            </form>
+<div class="container">
+    <div class="row">
+        <img class="mr-3 col-md-4 col-sm-12 " src="{% if object.image %}{{ object.image.url }}{% else %}{{ object.category.default_image.url }}{% endif %}" style="width: 18rem">
+        <div class="media-body col-md-8 col-sm-12">
+            <strong><h5 class="mt-0">{{object.name}}</h5></strong>
+            <p class="card-text"><strong>Price:</strong> {{ object.price }}</p>
+            <p class="card-text"><strong>Description:</strong>{{ object.description }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ object.location }}</p>
+            <p class="card-text"><strong>Category:</strong> {{ object.category }}</p>
+            <br>
+            <div class="card-add-to-basket quantity">
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit">Add</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+  
 </div>
 
 

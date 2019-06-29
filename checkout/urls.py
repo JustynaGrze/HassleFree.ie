@@ -1,7 +1,6 @@
 from django.conf.urls import url
-from .views import checkout, stripe
+from .views import checkout
 
 urlpatterns = [
     url(r'^$', checkout, name='checkout'),
-    url(r'^stripe/$', stripe, name='stripe'),
 ]
