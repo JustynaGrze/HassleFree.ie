@@ -1,0 +1,31 @@
+{% load humanize %}
+<div class="col-12 col-md-6 col-lg-4 card_post">
+    <div class="card" style="width: 18rem;">
+      <div class="img-background" style="background: url('{% if product.image %}{{ product.image.url }}{% else %}{{ product.category.default_image.url }}{% endif %}')no-repeat center center;"></div>
+        <div class="card-body">
+            <p class="card-title"><a href="{% url 'product-detail' product.id %}">{{product.name}}</a></p>
+            <p class="card-text">{{ product.description | truncatechars:90 }}</p>
+            <div class="row">
+                <div class="col-12">
+                    Price: &euro;{{ product.price | floatformat:2 | intcomma }}
+                </div>
+                <div class="col-12">
+                    Amount available: {{ product.quantity }}
+                </div>
+            </div>
+            <div class="card-add-to-basket">
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <div class="input-group">
+
+                  <input name="quantity" type="number" value="1" min="1" max="{% if product.quantity != -1 %}{{ product.quantity }}{% else %}999{% endif %}" class="form-control">
+
+                  <span class="input-group-btn">
+                      <button class="btn btn-success" type="submit">Add</button>
+                  </span>
+              </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

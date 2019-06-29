@@ -20,8 +20,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
-from products import views as product_views
 from cart import urls as urls_cart
+from checkout import urls as urls_checkout
+from products import urls as urls_products
 from search import urls as urls_search
 
 urlpatterns = [
@@ -50,10 +51,12 @@ urlpatterns = [
              template_name='users/password_reset_complete.html'
          ),
          name='password_reset_complete'),
-    path('', include('blog.urls')),
-    # path('', include('products.urls')),
-    path('products/', product_views.all_products, name='products'),
+    # path('', include('blog.urls')),
+    # path('products', include('products.urls')),
+    # path('products/', product_views.all_products, name='products'),
     url(r'^cart/', include(urls_cart)),
+    url(r'^checkout/', include(urls_checkout)),
+    url(r'^', include(urls_products)),
     url(r'^search/', include(urls_search)),
     
 ]

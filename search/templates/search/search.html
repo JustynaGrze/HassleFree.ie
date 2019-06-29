@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load searchhelpers %}
+
+{% block content %}
+
+    <div class="row">
+      
+      {% if products %}
+        {% for product in products %}
+        
+          {% include "products/product_card.html" %}
+          
+        {% endfor %}
+      {% else %}
+      
+        <div class="col-12 nothing-found">
+          <div class="nothing-found-text">
+          Couldn't find your query!
+          </div>
+        </div>
+        
+      {% endif %}
+      
+    </div>
+      {% with params=request.GET.urlencode %}
+
+      {% if products.has_previous %}
+        <a class="btn btn-outline-warning mb-4" href="{% relative_url '1' 'page' params %}">First</a>
+        <a class="btn btn-outline-warning mb-4" href="{% relative_url products.previous_page_number 'page' params %}">Previous</a>
+      {% endif %}
+
+      {% for num in products.paginator.page_range %}
+        {% if products.number == num %}
+          <a class="btn btn-warning mb-4" href="{% relative_url num 'page' params %}">{{ num }}</a>
+        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+          <a class="btn btn-outline-warning mb-4" href="{% relative_url num 'page' params %}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if products.has_next %}
+        <a class="btn btn-outline-warning mb-4" href="{% relative_url products.next_page_number 'page' params %}">Next</a>
+        <a class="btn btn-outline-warning mb-4" href="{% relative_url products.paginator.num_pages 'page' params %}">Last</a>
+      {% endif %}
+      
+      {% endwith %}
+
+    
+{% endblock content %}
+
+{% block js %}
+
+{% endblock %}
