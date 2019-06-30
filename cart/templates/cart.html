@@ -25,7 +25,7 @@
                     Amount ordered: {{ item.quantity }}
                 </div>
                 <div class="col-12">
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                    <form method="post" action="{% url 'adjust_cart' item.product.id %}">
                       {% csrf_token %}
                       <div class="input-group">
 
