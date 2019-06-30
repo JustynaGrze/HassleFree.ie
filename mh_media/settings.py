@@ -35,7 +35,6 @@ ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), 'hasslefree.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
     'checkout.apps.CheckoutConfig',
