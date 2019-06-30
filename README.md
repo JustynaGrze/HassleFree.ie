@@ -4,6 +4,16 @@
 Website created for a people who want to advertise their products e.g. cars,servieces, clothingetc .
 Interactive Frontend Development; design focused on simplicity and user friendlyness. 
 
+### Users
+As a user I should be able to : -see the homepage with with cover photo and categories. -see the main navigation bar with links which take me to different categories -to see all recipes on separate website -to search through the recipes by alergens, cousine,category,restrictions -add button to allow users to create a new recipe. -edit and delete the recipe
+
+As a user who whats to add new recipe I should:
+
+see a responsive form
+be able to add the: titile,description, category,cousine,rectrictions, alergens, ingedients, instruction, serves, preparation time, cooking time and add link to the recipe picture.
+see the submit button
+after adding the recipe it takes me to the web with all recipes.
+As a user who has an alergy I should be able: -to look through the alergens and choose a safe recipe for me
  
 ### What is this website for?
 Website is aiming:

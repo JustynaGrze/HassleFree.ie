@@ -8,6 +8,8 @@
 {% if cart_items %}
 <div class="row row-flex">
     
+<!--Show all the items in the basket-->
+
 {% for item in cart_items %}
     
 <div class="col-12 col-md-6 col-lg-4 card_post">
@@ -36,6 +38,8 @@
 
 </div>
 
+<!--Show total and checkout button-->
+
 <div class="row">
     <p style="height: 100%; vertical-align: middle; font-size: 2rem">
         Total &euro;{{ total | floatformat:2 | intcomma }} &nbsp;
@@ -44,6 +48,8 @@
 </div>
 
 {% else %}
+
+<!--Show a message in case nothing in the cart-->
 
 <div class="nothing-found">
     <div class="nothing-found-text">

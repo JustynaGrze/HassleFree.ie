@@ -53,6 +53,7 @@ class ProductUpdateView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
         
 class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Product
+    success_url = '/'
     
     def test_func(self):
         product = self.get_object()
