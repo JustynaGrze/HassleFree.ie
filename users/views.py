@@ -46,7 +46,7 @@ def profile(request):
     # prepare user's products
     products = Product.objects.filter(user=request.user)
     
-    paginator = Paginator(products.order_by('-date_posted'), 10)
+    paginator = Paginator(products.order_by('-date_posted'), 9)
         
     page = request.GET.get('page')
 

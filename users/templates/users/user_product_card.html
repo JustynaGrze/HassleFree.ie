@@ -1,0 +1,22 @@
+{% load humanize %}
+<div class="col-12 col-md-6 col-lg-4 card_post">
+    <div class="card" style="width: 18rem;">
+      <div class="img-background" style="background: url('{% if product.image %}{{ product.image.url }}{% else %}{{ product.category.default_image.url }}{% endif %}')no-repeat center center;"></div>
+        <div class="card-body">
+            <p class="card-title"><a href="{% url 'product-detail' product.id %}">{{product.name}}</a></p>
+           
+            <div class="row">
+                <div class="col-12">
+                    Price: &euro;{{ product.price | floatformat:2 | intcomma }}
+                </div>
+                <div class="col-12">
+                    Amount available: {{ product.quantity }}
+                </div>
+            </div>
+                <div>
+                    <a class="btn btn-dark btn-sm mt-1 mb-1" href="{% url 'product-update' product.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'product-delete' product.id %}">Delete</a>
+                </div>
+        </div>
+    </div>
+</div>

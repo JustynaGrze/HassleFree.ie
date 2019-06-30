@@ -51,9 +51,6 @@ urlpatterns = [
              template_name='users/password_reset_complete.html'
          ),
          name='password_reset_complete'),
-    # path('', include('blog.urls')),
-    # path('products', include('products.urls')),
-    # path('products/', product_views.all_products, name='products'),
     url(r'^cart/', include(urls_cart)),
     url(r'^checkout/', include(urls_checkout)),
     url(r'^', include(urls_products)),
