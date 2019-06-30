@@ -22,11 +22,20 @@
                     Price: &euro;{{ item.product.price | floatformat:2 | intcomma }}
                 </div>
                 <div class="col-12">
-                    {% if product.quantity == -1 %}
-                    Amount ordered: Unlimited
-                    {% else %}
                     Amount ordered: {{ item.quantity }}
-                    {% endif %}
+                </div>
+                <div class="col-12">
+                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                      {% csrf_token %}
+                      <div class="input-group">
+
+                      <input name="quantity" type="number" value="1" min="0" max="{{ product.quantity }}" class="form-control">
+
+                      <span class="input-group-btn">
+                          <button class="btn btn-success" type="submit">Amend</button>
+                      </span>
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>
