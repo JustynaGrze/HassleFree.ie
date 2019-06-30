@@ -2,8 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from checkout.models import Order, OrderLineItem
+
+
+from products.models import Product
 
 
 def register(request):
@@ -36,25 +40,25 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    # prepare user's transactions
     transactions = Order.objects.filter(user=request.user)
+    
+    # prepare user's products
+    products = Product.objects.filter(user=request.user)
+    
+    paginator = Paginator(products.order_by('-date_posted'), 10)
+        
+    page = request.GET.get('page')
 
+    products_paginated = paginator.get_page(page)
+
+
+    # prerape context
     context = {
         'u_form': u_form,
         'p_form': p_form,
         'transactions': transactions,
+        'products': products_paginated,
     }
 
     return render(request, 'users/profile.html', context)
-    
-    
-@login_required
-def transactions(request):
-    
-    transactions = Order.objects.filter(user=request.user)
-    
-    
-    context = {
-        'transactions': transactions
-    }
-
-    return render(request, 'users/transactions.html', context)
