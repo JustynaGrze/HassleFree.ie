@@ -29,7 +29,7 @@ if os.environ.get('DEBUG_VALUE') == "True":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME'), 'hasslefree.herokuapp.com']
+ALLOWED_HOSTS = ["*", 'hasslefree.herokuapp.com']
 
 
 # Application definition
